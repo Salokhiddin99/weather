@@ -1,5 +1,5 @@
 let elForm = document.querySelector('.form');
-let elInput = document.querySelector('.input');
+let inputs = document.querySelector('.input');
 let cityName = document.querySelector('.city');
 let countryName = document.querySelector('.country-name');
 let tempResult = document.querySelector('.temp-result');
@@ -15,18 +15,27 @@ let data = (country) => {
             renderWeather(data);
         })
 }
-elForm.addEventListener('submit', e => {
-    e.preventDefault();
-    input=elInput.value[0].toUpperCase()+elInput.value.slice(1);
+elForm.addEventListener('submit', evt => {
+    evt.preventDefault();
+
+    input=inputs.value[0].toUpperCase() + inputs.value.slice(1);
+
     data(input);
+
 })
 let renderWeather = (fullData) => {
     if(input===fullData.name){
+
     cityName.textContent=fullData.name;
+
     countryName.textContent = fullData.sys.country;
+
     tempResult.textContent=fullData.main.temp;
+
     windSpeed.textContent=fullData.wind.speed+" "+"m/s";
+
     weatherDesc.textContent=fullData.weather[0].description;
-    elInput.value=""
+
+    inputs.value=""
     }
 }
